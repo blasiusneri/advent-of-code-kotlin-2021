@@ -1,17 +1,16 @@
+import java.io.File
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    var increase = 0
+    val depths = readFile("src/aoc_2021_day1")
+    for(i in 1 until depths.size) {
+        if (depths[i] > depths[i-1]) {
+            increase++
+        }
     }
+    print(increase)
+}
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+private fun readFile(filename: String): List<Int> = File(filename).useLines { it.toList() }.map {
+    it.toInt()
 }
